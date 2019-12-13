@@ -210,8 +210,8 @@ When you run with `--daemon-mode false`, the process tree looks like this:
         `cwd` can be used to change the cwd directory of the master process.
         This allows you to release in different directories. Unfortunately,
         this option doesn't update the script location. For example, if you
-        start naught `naught start --cwd /release/1 server.js` and deploy
-        `naught deploy --cwd /release/2` the script file will not change from
+        start naught `naught-node10 start --cwd /release/1 server.js` and deploy
+        `naught-node10 deploy --cwd /release/2` the script file will not change from
         '/release/1/server.js' to '/release/2/server.js'. You have to create
         a symlink and pass the full symlink path to naught start
         '/current/server.js'. After creating the symlink naught starts the
