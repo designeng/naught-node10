@@ -116,34 +116,34 @@ When you run with `--daemon-mode false`, the process tree looks like this:
 
 ## CLI
 
-    naught start [options] server.js [script-options]
-    
+    naught-node10 start [options] server.js [script-options]
+
         Starts server.js as a daemon passing script-options as command
         line arguments.
-    
+
         Each worker's stdout and stderr are redirected to a log files
         specified by the `stdout` and `stderr` parameters. When a log file
         becomes larger than `max-log-size`, the log file is renamed using the
         current date and time, and a new log file is opened.
-    
+
         With naught, you can use `console.log` and friends. Because naught
         pipes the output into a log file, node.js treats stdout and stderr
         as asynchronous streams.
-    
+
         If you don't want a particular log, use `/dev/null` for the path. Naught
         special cases this filename and disables that log altogether.
-    
+
         When running in `daemon-mode` `false`, naught will start the master
         process and then block. It listens to SIGHUP for restarting and SIGTERM
         for stopping. In this situation you may use `-` for `stderr` and/or
         `stdout` which will redirect the respective streams to naught's output
         streams instead of a log file.
-    
+
         Creates an `ipc-file` which naught uses to communicate with your
         server once it has started.
-    
+
         Available options and their defaults:
-    
+
         --worker-count 1
         --ipc-file naught.ipc
         --pid-file naught.pid
@@ -155,58 +155,58 @@ When you run with `--daemon-mode false`, the process tree looks like this:
         --daemon-mode true
         --remove-old-ipc false
         --node-args ''
-    
-    
-    naught stop [options] [ipc-file]
-    
+
+
+    naught-node10 stop [options] [ipc-file]
+
         Stops the running server which created `ipc-file`.
         Uses `naught.ipc` by default.
-    
+
         This sends the 'shutdown' message to all the workers and waits for
         them to exit gracefully.
-    
+
         If you specify a timeout, naught will forcefully kill your workers
         if they do not shut down gracefully within the timeout.
-    
+
         Available options and their defaults:
-    
+
             --timeout none
             --pid-file naught.pid
-    
-    
-    naught status [ipc-file]
-    
+
+
+    naught-node10 status [ipc-file]
+
         Displays whether a server is running or not.
         Uses `naught.ipc` by default.
-    
-    
-    naught deploy [options] [ipc-file]
-    
+
+
+    naught-node10 deploy [options] [ipc-file]
+
         Replaces workers with new workers using new code and optionally
         the environment variables from this command.
-    
+
         Naught spawns all the new workers and waits for them to all become
         online before killing a single old worker. This guarantees zero
         downtime if any of the new workers fail and provides the ability to
         cleanly abort the deployment if it hangs.
-    
+
         A hanging deploy happens when a new worker fails to emit the 'online'
         message, or when an old worker fails to shutdown upon receiving the
         'shutdown' message. A keyboard interrupt will cause a deploy-abort,
         cleanly and with zero downtime.
-    
+
         If `timeout` is specified, naught will automatically abort the deploy
         if it does not finish within those seconds.
-    
+
         If `override-env` is true, the environment varibables that are set with
         this command are used to override the original environment variables
         used with the `start` command. If any variables are missing, the
         original values are left intact.
-    
+
         `worker-count` can be used to change the number of workers running. A
         value of `0` means to keep the same number of workers.
         A value of 'auto', will set value as per the number of available CPUs.
-    
+
         `cwd` can be used to change the cwd directory of the master process.
         This allows you to release in different directories. Unfortunately,
         this option doesn't update the script location. For example, if you
@@ -218,35 +218,35 @@ When you run with `--daemon-mode false`, the process tree looks like this:
         correct script, but the cwd is still old and require loads files from
         from the old directory. The cwd option allows you to update the cwd
         to the new directory. It defaults to naught's cwd.
-    
+
         Uses `naught.ipc` by default.
-    
+
         Available options and their defaults:
-    
+
             --worker-count 0
             --override-env true
             --timeout none
             --cwd .
-    
-    
-    naught deploy-abort [ipc-file]
-    
+
+
+    naught-node10 deploy-abort [ipc-file]
+
         Aborts a hanging deploy. A hanging deploy happens when a new worker
         fails to emit the 'online' message, or when an old worker fails
         to shutdown upon receiving the 'shutdown' message.
-    
+
         When deploying, a keyboard interrupt will cause a deploy-abort,
         so the times you actually have to run this command will be few and
         far between.
-    
+
         Uses `naught.ipc` by default.
-    
-    
-    naught version
-    
+
+
+    naught-node10 version
+
         Prints the version of naught and exits.
-    
-    
-    naught help [cmd]
-    
+
+
+    naught-node10 help [cmd]
+
         Displays help for cmd.
