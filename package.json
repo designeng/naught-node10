@@ -1,5 +1,5 @@
 {
-  "name": "naught",
+  "name": "naught-node10",
   "version": "1.6.0",
   "description": "zero downtime deployment for your node.js server",
   "keywords": [
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/andrewrk/naught"
+    "url": "https://github.com/designeng/naught-node10"
   },
   "author": "Andrew Kelley",
   "license": "MIT",
@@ -35,7 +35,7 @@
     "pend": "~1.2.0"
   },
   "bugs": {
-    "url": "https://github.com/andrewrk/naught/issues"
+    "url": "https://github.com/designeng/naught-node10/issues"
   },
   "directories": {
     "test": "test"
