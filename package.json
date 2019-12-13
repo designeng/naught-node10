@@ -14,7 +14,7 @@
     "test": "node test/test.js"
   },
   "bin": {
-    "naught": "./lib/main.js"
+    "naught-node10": "./lib/main.js"
   },
   "repository": {
     "type": "git",
