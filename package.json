@@ -11,7 +11,10 @@
     "daemonize"
   ],
   "scripts": {
-    "test": "node test/test.js"
+    "test": "node test/test.js",
+    "start": "PORT=3004 node ./lib/main start ./test/server1.js --worker-count 2",
+    "stop": "node ./lib/main stop",
+    "status": "node ./lib/main status"
   },
   "bin": {
     "naught-node10": "./lib/main.js"
